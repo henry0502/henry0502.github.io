@@ -43,3 +43,4 @@ footer {
     <title>我的個人網站</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWpFthE7F70k88--6q9fFR01EKpDLmnQmDTQ&s" alt="我的照片" width="300" style="border-radius: 10px;">
