@@ -15,7 +15,6 @@
     <footer>
         <p>聯繫我: your-email@example.com</p>
     </footer>
-</body>
 </html>
 <head>
     <meta charset="UTF-8">
@@ -45,4 +44,5 @@
     
 </style>
 
+</body>
 
