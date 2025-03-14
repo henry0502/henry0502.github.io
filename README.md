@@ -1,5 +1,4 @@
 # henry0502.github.io
-<!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
