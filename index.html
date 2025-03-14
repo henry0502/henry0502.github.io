@@ -46,4 +46,103 @@
 </style>
 
 </body>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>畫畫板</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        canvas {
+            border: 2px solid black;
+            cursor: crosshair;
+        }
+        .controls {
+            margin: 10px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>簡單的畫畫板</h1>
+    
+    <!-- 顏色選擇器 -->
+    <label for="colorPicker">選擇顏色：</label>
+    <input type="color" id="colorPicker" value="#000000">
+    
+    <!-- 橡皮擦按鈕 -->
+    <button class="button" onclick="toggleEraser()">切換橡皮擦</button>
+    
+    <canvas id="drawingCanvas" width="500" height="400"></canvas>
+    <br>
+    <button class="button" onclick="clearCanvas()">清除畫布</button>
+
+    <script>
+        const canvas = document.getElementById("drawingCanvas");
+        const ctx = canvas.getContext("2d");
+        const colorPicker = document.getElementById("colorPicker");
+        let painting = false;
+        let currentColor = "#000000"; // 預設顏色為黑色
+        let eraserMode = false;
+        
+        function startPosition(e) {
+            painting = true;
+            draw(e);
+        }
+
+        function endPosition() {
+            painting = false;
+            ctx.beginPath();
+        }
+        
+        function draw(e) {
+            if (!painting) return;
+            ctx.lineWidth = 5;
+            ctx.lineCap = "round";
+            ctx.strokeStyle = eraserMode ? "white" : currentColor;
+            
+            ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        }
+
+        function changeColor(event) {
+            currentColor = event.target.value;
+        }
+
+        function toggleEraser() {
+            eraserMode = !eraserMode;
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // 事件監聽
+        canvas.addEventListener("mousedown", startPosition);
+        canvas.addEventListener("mouseup", endPosition);
+        canvas.addEventListener("mousemove", draw);
+        colorPicker.addEventListener("input", changeColor);
+    </script>
+</body>
+</html>
 
