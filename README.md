@@ -42,4 +42,7 @@
 .button:hover {
   background-color: #0056b3;
 }
+    <button class="button" onclick="window.open('https://example.com', '_blank')">在新分頁開啟</button>
 </style>
+
+
